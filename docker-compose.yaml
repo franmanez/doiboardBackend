@@ -1,0 +1,29 @@
+services:
+  apren:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: registry.upc.edu/sddstic-sbpa/apren/backend:latest
+    container_name: aprenbackend
+    #ports:
+    #  - "8004:8004"
+    network_mode: host
+    volumes:
+      #- "./keystore:/keystore"
+      # localhost
+      - /home/fran/upc/jsonfiles:/home/ubuntu/jsonfiles
+      # Servidor
+      #- /SAN/app-deployments/apren/jsonfiles:/home/appuser/jsonfiles
+    env_file:
+      - .envs/.dev
+    #environment:
+      #- JAVA_TOOL_OPTIONS=-XX:+IgnoreUnrecognizedVMOptions -XX:+UseContainerSupport -XX:+IdleTuningCompactOnIdle -XX:+IdleTuningGcOnIdle -XX:MaxRAMPercentage=96 -Xms4g -Xmx6g
+        #deploy:
+        #  resources:
+        #    limits:
+        #  memory: 7g       # Asignar un límite de 7GB de memoria
+        #  cpus: "3"      # Limitar el uso de CPU al 300%
+        #reservations:
+        #  memory: 2g
+    #user: appuser
+

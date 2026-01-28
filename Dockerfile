@@ -1,6 +1,6 @@
 # Etapa de compilación
 #FROM gradle:8.10-jdk21 as build
-FROM gradle:8.10-jdk17 as build
+FROM gradle:9.2.1-jdk21 as build
 
 # Copia los archivos de configuración de Gradle y código fuente
 COPY build.gradle.kts settings.gradle.kts /home/app/src/

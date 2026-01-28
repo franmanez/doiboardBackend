@@ -252,18 +252,32 @@ class CrossRefService(
 
     private fun buildMonthlySynthesisPrompt(json: String, month: Int, year: Int) =
             """
-        Eres un experto en bibliometría. Analiza esta producción científica (t=título, j=revista, d=DOI, c=citas): $json
-        OBJETIVO: Generar una síntesis temática mensual (Mes $month, Año $year).
-        INSTRUCCIONES: Identifica 4 núcleos temáticos. Usa HTML limpio (h3, p, ul, li).
+        Eres un experto en bibliometría y analítica de tendencias científicas.
+        Analiza esta producción científica (t=título, j=revista, d=DOI, c=citas): $json
         
-        FORMATO DE SALIDA (ESTRICTO):
-        NO USES JSON. Escribe el contenido directamente usando estos marcadores:
+        OBJETIVO: Generar el informe "Núcleo Temático Mensual" para el Mes $month del Año $year.
+        
+        INSTRUCCIONES DE ESTRUCTURA (ESTRICTO):
+        1. TÍTULO: "Núcleo Temático Mensual: [Mes] de [Año]" (en el idioma correspondiente).
+        2. INTRODUCCIÓN: Analiza el panorama científico general del mes en 1-2 párrafos.
+        3. IDENTIFICACIÓN DE NÚCLEOS: Una frase de transición mencionando que se han identificado 4 núcleos principales.
+        4. DESARROLLO DE NÚCLEOS (EXACTAMENTE 4): Para cada núcleo usa este esquema:
+           - Título numerado (Ej: "1. Nombre del Tema: Subtítulo descriptivo") usando <h3>.
+           - Un párrafo narrativo profundo explicando el núcleo, su impacto y tendencias internas.
+           - Sección "Ejemplos destacados:" con una lista (<ul>) de los artículos más relevantes indicando título y número de citas.
+        5. RESUMEN FINAL: Un párrafo de conclusión que sintetice la convergencia de temas y el impacto global observado.
+
+        FORMATO TÉCNICO:
+        - Usa HTML limpio (<h3>, <p>, <strong>, <ul>, <li>).
+        - NO USES JSON. 
+        - Escribe el contenido directamente usando estos marcadores de idioma:
+        
         ===ES===
-        [HTML en Español]
+        [Contenido en Español siguiendo la estructura]
         ===EN===
-        [HTML en Inglés]
+        [Contenido en Inglés siguiendo la estructura]
         ===CA===
-        [HTML en Catalán]
+        [Contenido en Catalán siguiendo la estructura]
     """.trimIndent()
 
     private fun buildQuarterlyHorizonPrompt(

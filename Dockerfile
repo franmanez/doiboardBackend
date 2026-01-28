@@ -25,17 +25,13 @@ ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:+IdleTuningCompactOnIdle -XX
 #RUN useradd -m ubuntu
 WORKDIR /home/ubuntu
 
-# Crear directorio y asignarle permisos a appuser
-RUN mkdir -p /home/ubuntu/jsonfiles && chown -R ubuntu:ubuntu /home/ubuntu/jsonfiles && chmod -R 755 /home/ubuntu/jsonfiles
-
 # Cambia el usuario actual a appuser (no root)
 USER ubuntu
 
 # Copia el jar desde la etapa de compilación
-COPY --from=build /home/app/src/build/libs/aprenBackend.jar /home/ubuntu/aprenBackend.jar
-#COPY keystore /home/appuser/keystore
+COPY --from=build /home/app/src/build/libs/doiboardBackend.jar /home/ubuntu/doiboardBackend.jar
 
-EXPOSE 8004
+EXPOSE 8006
 
 # Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/home/ubuntu/aprenBackend.jar"]
+ENTRYPOINT ["java", "-jar", "/home/ubuntu/doiboardBackend.jar"]

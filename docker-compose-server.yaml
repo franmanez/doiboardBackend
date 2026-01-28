@@ -1,12 +1,9 @@
 services:
-  apren:
-    image: registry.upc.edu/sddstic-sbpa/apren/backend:latest
-    container_name: aprenbackend
+  doiboard:
+    image: registry.upc.edu/sddstic-sbpa/doiboard/backend:latest
+    container_name: doiboardbackend
     #ports:
     #  - "8004:8004" # No es necesario porque los contenedores se comunican por la red interna de Docker
-    volumes:
-      #- "./keystore:/keystore"
-      - /SAN/docker-data/apren/jsonfiles:/home/ubuntu/jsonfiles
     env_file:
       - .envs/.prod
     user: root

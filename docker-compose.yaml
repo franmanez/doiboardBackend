@@ -1,19 +1,13 @@
 services:
-  apren:
+  doiboard:
     build:
       context: .
       dockerfile: Dockerfile
-    image: registry.upc.edu/sddstic-sbpa/apren/backend:latest
-    container_name: aprenbackend
+    image: registry.upc.edu/sddstic-sbpa/doiboard/backend:latest
+    container_name: doiboardbackend
     #ports:
     #  - "8004:8004"
     network_mode: host
-    volumes:
-      #- "./keystore:/keystore"
-      # localhost
-      - /home/fran/upc/jsonfiles:/home/ubuntu/jsonfiles
-      # Servidor
-      #- /SAN/app-deployments/apren/jsonfiles:/home/appuser/jsonfiles
     env_file:
       - .envs/.dev
     #environment:

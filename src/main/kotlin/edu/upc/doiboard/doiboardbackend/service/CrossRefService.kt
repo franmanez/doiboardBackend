@@ -276,17 +276,30 @@ class CrossRefService(
         Eres un experto en Horizon Scanning. Compara estos periodos (t=título, j=revista, d=DOI, c=citas):
         ACTUAL: $currentJson
         PREVIO: $prevJson
-        OBJETIVO: Detectar desplazamientos de frontera (T$quarter, Año $year).
-        INSTRUCCIONES: Consolidación, frontera y 3 cambios significativos. HTML limpio.
         
-        FORMATO DE SALIDA (ESTRICTO):
-        NO USES JSON. Escribe el contenido directamente usando estos marcadores:
+        OBJETIVO: Detectar desplazamientos de frontera científica entre el trimestre previo y el actual (T$quarter, Año $year).
+        
+        INSTRUCCIONES DE ESTRUCTURA (ESTRICTO):
+        1. TÍTULO: "Detección de Desplazamientos de Frontera (T$quarter, Año $year)" (o traducción equivalente).
+        2. INTRODUCCIÓN: Un párrafo breve analizando la madurez general de los temas observados.
+        3. TRES CAMBIOS SIGNIFICATIVOS: Para cada uno de los 3 cambios identificados, usa exactamente este esquema:
+           - Título del cambio (lo más descriptivo posible, use <h3>).
+           - "Desplazamiento:": Explicación cualitativa de cómo ha evolucionado el foco.
+           - "Evidencia en PREVIO:": Cita ejemplos o temas detectados anteriormente.
+           - "Evidencia en ACTUAL:": Cita los nuevos DOIs o tendencias consolidadas ahora.
+        4. RESUMEN FINAL: Un breve párrafo de conclusión.
+
+        FORMATO TÉCNICO:
+        - Usa HTML limpio (<h3>, <p>, <strong>, <ul>, <li>).
+        - NO USES JSON. 
+        - Escribe el contenido directamente usando estos marcadores de idioma:
+        
         ===ES===
-        [HTML en Español]
+        [Contenido en Español siguiendo la estructura]
         ===EN===
-        [HTML en Inglés]
+        [Contenido en Inglés siguiendo la estructura]
         ===CA===
-        [HTML en Catalán]
+        [Contenido en Catalán siguiendo la estructura]
     """.trimIndent()
 
     private fun callGeminiApi(prompt: String): String {

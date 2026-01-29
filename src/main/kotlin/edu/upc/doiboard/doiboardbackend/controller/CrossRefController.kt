@@ -5,8 +5,13 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/crossref")
+@RequestMapping("/")
 class CrossRefController(private val crossRefService: CrossRefService) {
+
+    @GetMapping("/META/alive")
+    fun alive(): String {
+        return "alive"
+    }
 
     /** Radar de Innovación: Análisis de los trabajos más citados en un periodo. */
     @GetMapping("/radar")

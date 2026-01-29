@@ -29,9 +29,9 @@ WORKDIR /home/ubuntu
 USER ubuntu
 
 # Copia el jar desde la etapa de compilación
-COPY --from=build /home/app/src/build/libs/doiboardBackend.jar /home/ubuntu/doiboardBackend.jar
+COPY --from=build /home/app/src/build/libs/doiboardbackend.jar /home/ubuntu/doiboardbackend.jar
 
 EXPOSE 8006
 
 # Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/home/ubuntu/doiboardBackend.jar"]
+ENTRYPOINT ["java", "-jar", "/home/ubuntu/doiboardbackend.jar"]

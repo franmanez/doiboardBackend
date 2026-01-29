@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "edu.upc.doiboard"
-version = "0.0.1-SNAPSHOT"
+version = ""
 description = "DOIBoard Backend"
 
 java {

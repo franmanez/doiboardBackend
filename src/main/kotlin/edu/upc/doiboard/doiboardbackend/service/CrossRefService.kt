@@ -95,8 +95,18 @@ class CrossRefService(
 
             YOUR OBJECTIVE: Generate data for an 'Innovation Radar' (Bubble Chart).
             
-            FORMAT (PURE JSON ARRAY):
-            [{"tag": "Trend Name", "count": 10, "trend": "rising", "domain": "Scientific Domain"}]
+            STEP-BY-STEP PROCESS:
+            1. Analyze the 500 scientific papers provided.
+            2. Identify exactly 5 or 6 BROAD MACRO-DOMAINS that encompass all the research found (e.g., 'Biomedicine & Health', 'AI & Digital Transformation', 'Energy & Sustainability', etc.).
+            3. Group all specific trends into these 5-6 broad domains. Avoid creating niche or very specific domains.
+            4. For each trend, provide a descriptive name (tag), the number of papers associated with it within the sample (count), its lifecycle stage (rising, new, stable), and the broad domain it belongs to.
+
+            OUTPUT FORMAT (PURE JSON ARRAY):
+            [{"tag": "Specific Trend Name", "count": 10, "trend": "rising", "domain": "Broad Macro-Domain Name"}]
+            
+            CRITICAL: 
+            - Use ONLY the 5-6 broad domains identified in step 2 for the "domain" field.
+            - Do not include any text other than the JSON array.
         """.trimIndent()
     }
 

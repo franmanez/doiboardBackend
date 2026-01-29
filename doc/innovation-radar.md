@@ -17,13 +17,25 @@ El procesamiento se realiza mediante el modelo Google Gemini, configurado para r
 2. **Contextualización Institucional y Editorial**: Utiliza el `publisher` y el `container-title` para ponderar la relevancia del término en función del prestigio del canal de comunicación científica.
 3. **Métrica de Intensidad (`count`)**: Representa la frecuencia absoluta de artículos que se encuadran dentro de una macrotendencia dentro de la muestra de 500, proporcionando una medida de la "masa crítica" del área.
 
-## 3. Taxonomía de Tendencias
-Cada macrotendencia se clasifica en una de tres categorías de ciclo de vida:
-- **`new` (Disruptivo)**: Tecnologías emergentes con baja frecuencia histórica pero aparición súbita en revistas de vanguardia.
-- **`rising` (En Crecimiento)**: Áreas con alta aceleración de citas y proliferación de publicaciones relacionadas.
-- **`stable` (Consolidado)**: Pilares fundamentales de la ciencia contemporánea con volumen de citas alto y constante.
+## 3. Taxonomía y Jerarquía de Visualización
+El radar utiliza una estructura jerárquica de dos niveles para optimizar la legibilidad en gráficos de burbujas (Packed Bubble Charts):
 
-## 4. Persistencia y Optimización de Capa de Datos
+1. **Macro-Dominios (Nivel 1 - Contenedores)**: 
+   - El sistema identifica dinámicamente **exactamente 5 o 6 grandes áreas macro** (ej: Ciencias de la Salud, Sostenibilidad, IA y Computación).
+   - Estas áreas actúan como las "burbujas madre" que agrupan a las tendencias afines.
+   - Forzar un número pequeño de dominios evita la fragmentación del gráfico y asegura que cada grupo tenga "masa crítica" visual.
+
+2. **Tendencias Específicas (Nivel 2 - Bubullas internas)**:
+   - Representan los temas detallados o clústeres semánticos identificados.
+   - Cada tendencia se clasifica en una de tres categorías de ciclo de vida:
+     - **`new` (Disruptivo)**: Tecnologías emergentes con aparición súbita.
+     - **`rising` (En Crecimiento)**: Áreas con aceleración notable de publicaciones.
+     - **`stable` (Consolidado)**: Temas maduros con volumen constante.
+
+## 4. Métricas de Intensidad
+- **`count` (Frecuencia)**: Representa el número de artículos de la muestra (top 500) que pertenecen a esa tendencia. Determina el diámetro de la burbuja interna.
+- **`domain` correlation**: Determina la posición y agrupación cromática en el radar. Al usar macro-dominios, el gráfico muestra "nubes" temáticas coherentes en lugar de elementos aislados.
+## 5. Persistencia y Optimización de Capa de Datos
 El sistema implementa una **Caché de Inteligencia** en la base de datos relacional:
 - **Validación de Caché**: Antes de invocar al LLM, el sistema verifica en la tabla `ai_analyses` si ya existe un análisis procesado para la fecha de referencia y el tipo `RADAR`.
 - **Formato de Persistencia**: Los resultados se almacenan en formato JSON dentro de una columna de tipo `TEXT` (o `JSON` nativo), optimizando el tiempo de respuesta de ~15 segundos (latencia de IA) a <10ms (consulta a BD).

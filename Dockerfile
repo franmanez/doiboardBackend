@@ -14,7 +14,7 @@ RUN gradle bootJar --no-daemon
 
 # Etapa de ejecución
 # FROM openjdk:21
-FROM ibm-semeru-runtimes:open-17-jdk
+FROM ibm-semeru-runtimes:open-21-jdk
 
 # Variables de entorno para la JVM
 #ENV JAVA_TOOL_OPTIONS="-XX:+IgnoreUnrecognizedVMOptions -XX:+UseContainerSupport -XX:+IdleTuningCompactOnIdle -XX:+IdleTuningGcOnIdle -XX:MaxRAMPercentage=96"

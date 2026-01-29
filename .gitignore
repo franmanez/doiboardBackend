@@ -40,6 +40,5 @@ out/
 .kotlin
 
 ### Custom ignores ###
-.envs/
 build_log.txt
 build_output.txt

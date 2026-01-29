@@ -1,0 +1,12 @@
+# .envs/.dev
+DB_URL=jdbc:mysql://localhost:3306/doiboard?useSSL=false&serverTimezone=UTC
+DB_USERNAME=root
+DB_PASSWORD=b1bl10
+
+SERVER_ADDRESS=localhost
+SERVER_PORT=8006
+
+GEMINI_API_KEY=AIzaSyBIdG53Sfh2WBLar8t07cQylgElDhLspb8
+
+# Este es para configurar el environment para ejecutar desde IntelliJ (Sin docker)
+# DB_URL=jdbc:mysql://localhost:3306/doiboard?useSSL=false&serverTimezone=UTC; DB_USERNAME=root; DB_PASSWORD=b1bl10; SERVER_ADDRESS=localhost; SERVER_PORT=8006; GEMINI_API_KEY=AIzaSyBIdG53Sfh2WBLar8t07cQylgElDhLspb8

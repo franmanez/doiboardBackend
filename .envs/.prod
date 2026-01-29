@@ -1,0 +1,9 @@
+# .envs/.prod
+DB_URL=jdbc:mysql://idp.upc.edu:3306/apren?useSSL=false&serverTimezone=UTC
+DB_USERNAME=root
+DB_PASSWORD=b1bl10
+
+SERVER_ADDRESS=0.0.0.0
+SERVER_PORT=8006
+
+GEMINI_API_KEY=AIzaSyBIdG53Sfh2WBLar8t07cQylgElDhLspb8

@@ -90,23 +90,30 @@ class CrossRefService(
 
     private fun buildInnovationRadarPrompt(crossRefJson: String): String {
         return """
-            You are an expert in scientific data mining and trend analysis.
+            Analiza los siguientes 500 títulos de artículos científicos recientemente publicados y altamente citados.
             INPUT DATA (t=title, j=journal, d=DOI, c=citations): $crossRefJson
 
-            YOUR OBJECTIVE: Generate data for an 'Innovation Radar' (Bubble Chart).
+            TU OBJETIVO: Generar los datos para un 'Radar de Innovación' (Bubble Chart) que visualice las temáticas científicas más relevantes.
             
-            STEP-BY-STEP PROCESS:
-            1. Analyze the 500 scientific papers provided.
-            2. Identify exactly 5 or 6 BROAD MACRO-DOMAINS that encompass all the research found (e.g., 'Biomedicine & Health', 'AI & Digital Transformation', 'Energy & Sustainability', etc.).
-            3. Group all specific trends into these 5-6 broad domains. Avoid creating niche or very specific domains.
-            4. For each trend, provide a descriptive name (tag), the number of papers associated with it within the sample (count), its lifecycle stage (rising, new, stable), and the broad domain it belongs to.
-
-            OUTPUT FORMAT (PURE JSON ARRAY):
-            [{"tag": "Specific Trend Name", "count": 10, "trend": "rising", "domain": "Broad Macro-Domain Name"}]
+            TAREAS:
+            1. Extrae hasta 3 tecnologías, métodos o conceptos clave por cada artículo de los proporcionados.
+            2. REGLAS DE NORMALIZACIÓN:
+               - Agrupa variantes y sinónimos (ej: 'Machine Learning', 'ML', 'Aprendizaje Automático' -> 'Machine Learning').
+               - Usa términos canónicos reconocidos (ej: 'Grandes Modelos de Lenguaje' -> 'LLMs').
+               - Ignora términos genéricos como 'software', 'aplicación', 'análisis', 'estudio'.
+            3. Fusiona casi-sinónimos y suma sus ocurrencias.
+            4. Asigna una tendencia ('trend') a cada uno comparándolos con el contexto tecnológico actual:
+               - 'rising' para tecnologías emergentes o en fuerte crecimiento.
+               - 'stable' para tecnologías ya establecidas.
+               - 'new' para innovaciones que están empezando a aparecer muy recientemente.
+            5. Devuelve los top 30-40 más relevantes.
             
-            CRITICAL: 
-            - Use ONLY the 5-6 broad domains identified in step 2 for the "domain" field.
-            - Do not include any text other than the JSON array.
+            OUTPUT ESPERADO (JSON array puro):
+            [
+              {"tag": "Concepto", "count": 120, "trend": "rising"},
+              ...
+            ]
+            Responde SOLO con el JSON.
         """.trimIndent()
     }
 

@@ -50,3 +50,21 @@ allOpen {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+// ─── Dev runner: carrega .envs/.dev automàticament ────────────────────────────
+// Usage: ./gradlew bootRun
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    doFirst {
+        val envFile = file(".envs/.dev")
+        if (envFile.exists()) {
+            val vars = envFile.readLines()
+                .filter { it.isNotBlank() && !it.trimStart().startsWith("#") }
+                .mapNotNull { line ->
+                    val idx = line.indexOf('=')
+                    if (idx > 0) line.substring(0, idx).trim() to line.substring(idx + 1).trim()
+                    else null
+                }.toMap()
+            environment(vars)
+        }
+    }
+}

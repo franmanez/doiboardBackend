@@ -42,3 +42,7 @@ out/
 ### Custom ignores ###
 build_log.txt
 build_output.txt
+
+### Environment files ###
+.envs/
+docker-compose.override.yaml

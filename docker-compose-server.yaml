@@ -6,6 +6,8 @@ services:
     #  - "8004:8004" # No es necesario porque los contenedores se comunican por la red interna de Docker
     env_file:
       - .envs/.prod
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
     user: root
     networks:
       - global_nginx_network  # Conectado a la misma red del frontend y Nginx

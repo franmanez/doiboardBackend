@@ -86,6 +86,6 @@ deploy:
     - echo "== Probar conexión SSH manualmente =="
     - ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "echo 'Conexión SSH exitosa'" || echo "Conexión SSH fallida"
     - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts  # Añadir el servidor a "known_hosts"
-    - ssh $SSH_USER@$SSH_HOST "cd /SAN/docker-deploy/doiboard/backend && docker compose down && docker compose pull && docker compose build --no-cache && docker compose up -d"
+    - ssh $SSH_USER@$SSH_HOST "export GEMINI_API_KEY='$GEMINI_API_KEY'; cd /SAN/docker-deploy/doiboard/backend && docker compose down && docker compose pull && docker compose build --no-cache && docker compose up -d"
   only:
     - main

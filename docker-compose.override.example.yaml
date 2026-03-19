@@ -1,0 +1,7 @@
+# doiboardbackend/docker-compose.override.example.yaml
+# Copia este archivo a docker-compose.override.yaml para desarrollo local
+
+services:
+  doiboard:
+    env_file:
+      - .envs/.dev
